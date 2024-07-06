@@ -29,7 +29,7 @@ with pkgs;
   openssh
   libarchive
   python3Packages.debugpy
-  nodePackages.pyright
+  python3Packages.basedpyright
   ruff
   nix-index
   (nerdfonts.override {

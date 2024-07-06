@@ -17,7 +17,7 @@
         {
           name = "python";
           language-servers = [
-            "pyright"
+            "basedpyright"
           ];
           debugger = {
             name = "debugpy";
@@ -49,7 +49,9 @@
         }
       ];
       language-server = {
-        pyright = {
+        basedpyright = {
+          command = "basedpyright-langserver";
+          args = ["--stdio"];
           config = {
             python.analysis = {
               autoImportCompletions = true;
