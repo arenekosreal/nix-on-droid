@@ -18,6 +18,7 @@
           name = "python";
           language-servers = [
             "basedpyright"
+            "pyright"
           ];
           debugger = {
             name = "debugpy";
@@ -52,6 +53,20 @@
         basedpyright = {
           command = "basedpyright-langserver";
           args = ["--stdio"];
+          config = {
+            basedpyright.analysis = {
+              autoImportCompletions = true;
+              autoSearchPaths = true;
+              diagnosticMode = "workspace";
+              diagnosticSeverityOverrides = {
+                reportMissingTypeStubs = "warning";
+              };
+              typeCheckingMode = "strict";
+              useLibraryCodeForTypes = true;
+            };
+          };
+        };
+        pyright = {
           config = {
             python.analysis = {
               autoImportCompletions = true;
