@@ -3,15 +3,15 @@
   description = "Basic example of Nix-on-Droid system config.";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
     nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-23.11";
+      url = "github:nix-community/nix-on-droid/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -22,6 +22,14 @@
 
     nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
       modules = [ ./nix-on-droid.nix ];
+      extraSpecialArgs = {};
+      pkgs = import nixpkgs {
+        system = "aarch64-linux";
+        overlays = [
+          nix-on-droid.overlays.default
+        ];
+      };
+      home-manager-path = home-manager.outPath;
     };
 
   };

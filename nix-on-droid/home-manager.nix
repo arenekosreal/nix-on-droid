@@ -1,7 +1,7 @@
 { config, libs, pkgs, ... }:
 
 {
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   home.language = import ./home-manager/language.nix;
 
